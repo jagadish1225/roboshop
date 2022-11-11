@@ -7,5 +7,18 @@
 - name: Download a frontend code and unzip
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp/roboshop/frontend.zip
+    dest: /tmp
     remote_src: yes
+
+
+- name: Remove old html web pages
+  ansible.builtin.files:
+  path: /usr/share/nginx/html
+  state: absent
+
+
+- name: Copy the html files 
+  ansible.builtin.copy:
+  src: /tmp/frontend-main/static/
+  dest: /usr/share/nginx/html
+  remote_src: yes
