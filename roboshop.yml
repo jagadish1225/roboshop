@@ -1,0 +1,4 @@
+- nmae: Frontend setup
+  hosts: all 
+  roles: 
+    - frontend
